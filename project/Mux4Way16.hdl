@@ -1,0 +1,76 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/01/Mux4Way16.hdl
+
+/**
+ * 4-way 16-bit multiplexor:
+ * out = a if sel == 00
+ *       b if sel == 01
+ *       c if sel == 10
+ *       d if sel == 11
+ */
+
+CHIP Mux4Way16 {
+    IN a[16], b[16], c[16], d[16], sel[2];
+    OUT out[16];
+
+    PARTS:
+    Not(in = sel[0], out = x);
+    Not(in = sel[1], out = y);
+    And(a = sel[0], b = y, out = xx);
+    And(a = x, b = sel[1], out = yy);
+    And(a = sel[0], b = sel[1], out = z);
+    Or(a = xx, b = z, out = xxx);
+    Or(a = z, b = yy, out = yyy);
+    Mux(a = a[0], b = b[0], sel = xxx, out = e);
+    Mux(a = e, b = c[0], sel = yyy, out = f);
+    Mux(a = f, b = d[0], sel = z, out = out[0]);
+    Mux(a = a[1], b = b[1], sel = xxx, out = e1);
+    Mux(a = e1, b = c[1], sel = yyy, out = f1);
+    Mux(a = f1, b = d[1], sel = z, out = out[1]);
+    Mux(a = a[2], b = b[2], sel = xxx, out = e2);
+    Mux(a = e2, b = c[2], sel = yyy, out = f2);
+    Mux(a = f2, b = d[2], sel = z, out = out[2]);
+    Mux(a = a[3], b = b[3], sel = xxx, out = e3);
+    Mux(a = e3, b = c[3], sel = yyy, out = f3);
+    Mux(a = f3, b = d[3], sel = z, out = out[3]);
+    Mux(a = a[4], b = b[4], sel = xxx, out = e4);
+    Mux(a = e4, b = c[4], sel = yyy, out = f4);
+    Mux(a = f4, b = d[4], sel = z, out = out[4]);
+    Mux(a = a[5], b = b[5], sel = xxx, out = e5);
+    Mux(a = e5, b = c[5], sel = yyy, out = f5);
+    Mux(a = f5, b = d[5], sel = z, out = out[5]);
+    Mux(a = a[6], b = b[6], sel = xxx, out = e6);
+    Mux(a = e6, b = c[6], sel = yyy, out = f6);
+    Mux(a = f6, b = d[6], sel = z, out = out[6]);
+    Mux(a = a[7], b = b[7], sel = xxx, out = e7);
+    Mux(a = e7, b = c[7], sel = yyy, out = f7);
+    Mux(a = f7, b = d[7], sel = z, out = out[7]);
+    Mux(a = a[8], b = b[8], sel = xxx, out = e8);
+    Mux(a = e8, b = c[8], sel = yyy, out = f8);
+    Mux(a = f8, b = d[8], sel = z, out = out[8]);
+    Mux(a = a[9], b = b[9], sel = xxx, out = e9);
+    Mux(a = e9, b = c[9], sel = yyy, out = f9);
+    Mux(a = f9, b = d[9], sel = z, out = out[9]);
+    Mux(a = a[10], b = b[10], sel = xxx, out = ee);
+    Mux(a = ee, b = c[10], sel = yyy, out = ff);
+    Mux(a = ff, b = d[10], sel = z, out = out[10]);
+    Mux(a = a[11], b = b[11], sel = xxx, out = ee1);
+    Mux(a = ee1, b = c[11], sel = yyy, out = ff1);
+    Mux(a = ff1, b = d[11], sel = z, out = out[11]);
+    Mux(a = a[12], b = b[12], sel = xxx, out = ee2);
+    Mux(a = ee2, b = c[12], sel = yyy, out = ff2);
+    Mux(a = ff2, b = d[12], sel = z, out = out[12]);
+    Mux(a = a[13], b = b[13], sel = xxx, out = ee3);
+    Mux(a = ee3, b = c[13], sel = yyy, out = ff3);
+    Mux(a = ff3, b = d[13], sel = z, out = out[13]);
+    Mux(a = a[14], b = b[14], sel = xxx, out = ee4);
+    Mux(a = ee4, b = c[14], sel = yyy, out = ff4);
+    Mux(a = ff4, b = d[14], sel = z, out = out[14]);
+    Mux(a = a[15], b = b[15], sel = xxx, out = ee5);
+    Mux(a = ee5, b = c[15], sel = yyy, out = ff5);
+    Mux(a = ff5, b = d[15], sel = z, out = out[15]);
+//sel[0] = real? sel[1], sel[1] = real? sel[0]
+//It makes no difference on this.
+}
